@@ -8,18 +8,11 @@
 
 @implementation GameModel
 
-
+<<<<<<< HEAD
 - (void) setMyMatch:(GKMatch *)myMatch
 {
     _myMatch = myMatch;
     _myMatch.delegate = self;
-}
-
--(void) clearDictionary
-{
-    self.myWord = @"";
-    self.partnerWord = @"";
-    [self.usedWords removeAllObjects];
 }
 
 -(NSString *) isValidSubmit: (NSString *) word
@@ -72,7 +65,7 @@
         {
             [self.usedWords addObject:self.partnerWord];
             [self.usedWords addObject:self.myWord];
-            [self.delegate gameProgressesWithFirstWord:self.myWord SecondWord:self.partnerWord];
+            [self.delegate getLastWordPair:self.myWord Second:self.partnerWord];
             self.partnerWord = @"";
             self.myWord = @"";
         }
@@ -92,7 +85,7 @@
         {
             [self.usedWords addObject:self.partnerWord];
             [self.usedWords addObject:self.myWord];
-            [self.delegate gameProgressesWithFirstWord:self.myWord SecondWord:self.partnerWord];
+            [self.delegate getLastWordPair:self.myWord Second:self.partnerWord];
             self.partnerWord = @"";
             self.myWord = @"";
         }
@@ -113,4 +106,7 @@
     }
     return self;
 }
+=======
+
+>>>>>>> 75a76578e03e89a7f7ea28249e9637e329ab2f63
 @end

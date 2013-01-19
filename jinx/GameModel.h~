@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+<<<<<<< HEAD
 #import <GameKit/GameKit.h>
 
+@protocol GameModelDelegate <NSObject>
 
+-(void) gameWonWithWord:(NSString *) winningWord;
+-(void) getLastWordPair:(NSString *)word1 Second:(NSString *)word2;
+=======
 @protocol GameModelDelegate <NSObject>
 
 -(void) gameWonWithWord:(NSString *) winningWord;
@@ -20,16 +24,36 @@
 
 
 @interface GameModel : NSObject
-
 @property (weak, nonatomic) id <GameModelDelegate> delegate;
 
-@property (nonatomic, strong) GKMatch *myMatch;
-
--(NSString *) isValidSubmit: (NSString *) word;
+-(NSString *) isValidSubmit;
 
 - (void) userInputedWord:(NSString *)word;
 
 -(void) clearDictionary;
 
+
+
+
+
+
+>>>>>>> 75a76578e03e89a7f7ea28249e9637e329ab2f63
+
 @end
 
+
+@interface GameModel : NSObject
+@property (weak, nonatomic) id <GameModelDelegate> delegate;
+@property (nonatomic, strong) GKMatch *myMatch;
+
+-(NSString *) isValidSubmit;
+
+- (void) userInputedWord:(NSString *)word;
+
+
+
+
+
+
+
+@end
