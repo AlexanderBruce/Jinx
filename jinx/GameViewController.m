@@ -9,7 +9,7 @@
 #import "GameViewController.h"
 #import "GameModel.h"
 // <Intefaces>
-@interface GameViewController () <UITextFieldDelegate>  id<GameModelDelegate>
+@interface GameViewController () <UITextFieldDelegate,GameModelDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 @property (weak, nonatomic) IBOutlet UILabel *myLabel;
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
@@ -38,5 +38,15 @@
 {
     [self.myTextField resignFirstResponder];
     return YES;
+}
+
+-(void) gameWonWithWord:(NSString *) winningWord
+{
+    
+}
+-(void) getLastWordPair:(NSString *)word1 Second:(NSString *)word2
+{
+    NSString * words = [NSString stringWithFormat:@"%@ %@",word1,word2];
+    self.myLabel.text = words;
 }
 @end
