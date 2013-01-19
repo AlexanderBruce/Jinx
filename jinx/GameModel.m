@@ -24,12 +24,12 @@
 
 -(NSString *) isValidSubmit: (NSString *) word
 {
-    NSLog(@"|%@|",[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]]);
+    
     if([self.usedWords containsObject:word])
     {
         return [NSString stringWithFormat:@"Invalid Word: %@ has already been used",word];
     }
-    else if([[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "]] isEqualToString:@""])
+    else if(![[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "]] isEqualToString:@""])
     {
         return [NSString stringWithFormat:@"Invalid Word: Your word can only contain letters"];
     }
