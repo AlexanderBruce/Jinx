@@ -39,12 +39,8 @@
 {
     switch (state)
     {
-        case GKPlayerStateConnected:
-            // Handle a new player connection.
-            break;
         case GKPlayerStateDisconnected:
-            // A player just disconnected.
-            break;
+            [self.delegate playerDisconnected];
     }
 }
 

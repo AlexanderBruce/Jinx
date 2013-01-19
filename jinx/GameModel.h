@@ -1,11 +1,3 @@
-//
-//  GameModel.h
-//  jinx
-//
-//  Created by Alexander Bruce on 1/19/13.
-//  Copyright (c) 2013 Duke University. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import <GameKit/GameKit.h>
@@ -16,6 +8,7 @@
 -(void) gameWonWithWord:(NSString *) winningWord;
 -(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2;
 -(void) networkError: (NSString *) errorMessage;
+-(void) playerDisconnected;
 
 @end
 
