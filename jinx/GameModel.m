@@ -55,7 +55,7 @@
     [self.myMatch sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     if (error != nil)
     {
-//        [self.delegate reportNetworkError:error.localizedDescription];
+        [self.delegate networkError:error.localizedDescription];
     }
 }
 
