@@ -59,7 +59,7 @@
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID
 {
     self.partnerWord = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    if(self.myWord)
+    if(self.myWord && self.myWord.length > 0)
     {
         if([self.myWord caseInsensitiveCompare:self.partnerWord] == NSOrderedSame)
         {
@@ -79,7 +79,7 @@
 - (void) userInputedWord:(NSString *)word
 {
     self.myWord = word;
-    if(self.partnerWord)
+    if(self.partnerWord && self.partnerWord.length > 0)
     {
         if([self.myWord caseInsensitiveCompare:self.partnerWord] == NSOrderedSame)
         {

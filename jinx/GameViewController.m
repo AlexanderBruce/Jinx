@@ -68,9 +68,17 @@
     [self initializeAudioPlayer];
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Victory!" message:@"Jinx! Y'all won!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Play Again", nil];
     [alert show];
-    
-    
-    
+}
+
+- (void) networkError:(NSString *)errorMessage
+{
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Network Error" message:errorMessage delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [alert show];
+}
+
+- (void) playerDisconnected
+{
+    //TODO: Player disconnected - go back
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
