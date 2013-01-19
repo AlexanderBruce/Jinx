@@ -7,32 +7,36 @@
 //
 
 #import "GameViewController.h"
-
-@interface GameViewController ()
+#import "GameModel.h"
+// <Intefaces>
+@interface GameViewController () <UITextFieldDelegate>  id<GameModelDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *myTextField;
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;
+@property (weak, nonatomic) IBOutlet UIButton *myButton;
 
 @end
 
 @implementation GameViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.myTextField.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning
+
+
+- (void)viewDidUnload {
+    [self setMyTextField:nil];
+    [self setMyLabel:nil];
+    [self setMyButton:nil];
+    [super viewDidUnload];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.myTextField resignFirstResponder];
+    return YES;
 }
-
 @end

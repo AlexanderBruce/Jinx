@@ -7,7 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+@protocol GameModelDelegate <NSObject>
+
+-(void) gameWonWithWord:(NSString *) winningWord;
+-(void) getLastWordPair:(NSString *)word1 Second:(NSString *)word2;
+
+@end
+
 
 @interface GameModel : NSObject
+@property (weak, nonatomic) id <GameModelDelegate> delegate;
+
+-(NSString *) isValidSubmit;
+
+- (void) userInputedWord:(NSString *)word;
+
+
+
+
+
+
 
 @end

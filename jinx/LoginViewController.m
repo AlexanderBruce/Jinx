@@ -21,7 +21,7 @@
         [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
             if (localPlayer.isAuthenticated)
             {
-                //
+                [self performSegueWithIdentifier:@"gameSegue" sender:self];
                 [self createMatch];
             }
             else
