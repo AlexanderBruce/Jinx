@@ -1,5 +1,5 @@
 #import "LoginViewController.h"
-#import <GameKit/GameKit.h> //S
+#import <GameKit/GameKit.h> //Yo
 
 @interface LoginViewController () <GKGameCenterControllerDelegate>
 
