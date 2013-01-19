@@ -32,11 +32,11 @@
             if (localPlayer.isAuthenticated)
             {
 
-                [self installInvitationHandler];
+//                [self installInvitationHandler];
 
                 [self performSegueWithIdentifier:@"gameSegue" sender:self];
 
-                [self createMatch];
+//                [self createMatch];
             }
             else
             {

@@ -27,11 +27,27 @@
     [super viewDidLoad];
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
-    self.myLabel.text=@"Jinx words will be displayed here";
+    self.myLabel.text=@"Last rounds words are here";
     UIImage *background = [UIImage imageNamed:@"Free-HD-Purple-Space-Backgrounds.jpg"];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
+    
 }
 
+- (IBAction)submitButtonPressed:(UIButton *)sender
+{
+    NSString * submitWord = self.myTextField.text;
+    NSString * error =[self.myModel isValidSubmit:submitWord];
+    if(error)
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    else
+    {
+    [self.myModel userInputedWord:submitWord];
+    }
+}
 
 
 - (void)viewDidUnload {
@@ -64,17 +80,16 @@
     }
     else
     {
-        self.myLabel.text=@"Jinx words will be displayed here";
+        self.myLabel.text=@"Last rounds words are here";
         self.myTextField.text=nil;
         [self.myModel clearDictionary];
-        
         
         
     }
 }
 -(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
 {
-    NSString * words = [NSString stringWithFormat:@"The previous words were%@ %@",word1,word2];
+    NSString * words = [NSString stringWithFormat:@"Last Round:%@ %@",word1,word2];
     self.myLabel.text = words;
     self.myTextField.text =nil;
 }
