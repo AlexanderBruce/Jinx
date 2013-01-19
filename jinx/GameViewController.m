@@ -28,6 +28,8 @@
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
     self.myLabel.text=@"Jinx words will be displayed here";
+    UIImage *background = [UIImage imageNamed:@"Free-HD-Purple-Space-Backgrounds.jpg"];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
 }
 
 
@@ -65,6 +67,7 @@
         self.myLabel.text=@"Jinx words will be displayed here";
         self.myTextField.text=nil;
         [self.myModel clearDictionary];
+        
         
         
     }
