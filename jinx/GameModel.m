@@ -8,6 +8,7 @@
 
 @implementation GameModel
 
+
 - (void) setMyMatch:(GKMatch *)myMatch
 {
     _myMatch = myMatch;

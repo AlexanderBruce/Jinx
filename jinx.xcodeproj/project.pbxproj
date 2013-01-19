@@ -22,6 +22,8 @@
 		498AB88016AB32D900F5E8EA /* Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 498AB87F16AB32D900F5E8EA /* Extra.m */; };
 		FA3B941E16AB2922007C572F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B941D16AB2922007C572F /* GameViewController.m */; };
 		FA3B942216AB293B007C572F /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B942116AB293B007C572F /* GameModel.m */; };
+		FA3B942416AB497C007C572F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3B942316AB497C007C572F /* AVFoundation.framework */; };
+		FA3B942616AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA3B942516AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		FA3B941D16AB2922007C572F /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FA3B942016AB293B007C572F /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		FA3B942116AB293B007C572F /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		FA3B942316AB497C007C572F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FA3B942516AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Free-HD-Purple-Space-Backgrounds.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3B942416AB497C007C572F /* AVFoundation.framework in Frameworks */,
 				4916500216A87B820094BE03 /* GameKit.framework in Frameworks */,
 				49164FD816A87A720094BE03 /* UIKit.framework in Frameworks */,
 				49164FDA16A87A720094BE03 /* Foundation.framework in Frameworks */,
@@ -69,6 +74,7 @@
 		49164FC816A87A710094BE03 = {
 			isa = PBXGroup;
 			children = (
+				FA3B942316AB497C007C572F /* AVFoundation.framework */,
 				49164FDD16A87A720094BE03 /* jinx */,
 				49164FD616A87A720094BE03 /* Frameworks */,
 				49164FD416A87A720094BE03 /* Products */,
@@ -97,6 +103,7 @@
 		49164FDD16A87A720094BE03 /* jinx */ = {
 			isa = PBXGroup;
 			children = (
+				FA3B942516AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg */,
 				49164FFA16A87B0E0094BE03 /* LoginViewController.h */,
 				49164FFB16A87B0E0094BE03 /* LoginViewController.m */,
 				49164FE616A87A720094BE03 /* AppDelegate.h */,
@@ -184,6 +191,7 @@
 				49164FEC16A87A720094BE03 /* Default@2x.png in Resources */,
 				49164FEE16A87A720094BE03 /* Default-568h@2x.png in Resources */,
 				49164FF116A87A720094BE03 /* MainStoryboard.storyboard in Resources */,
+				FA3B942616AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

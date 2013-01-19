@@ -7,32 +7,87 @@
 //
 
 #import "GameViewController.h"
-
-@interface GameViewController ()
+#import "GameModel.h"
+#import <AVFoundation/AVFoundation.h>
+// <Intefaces>
+@interface GameViewController () <UITextFieldDelegate,GameModelDelegate,AVAudioPlayerDelegate,UIAlertViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *myTextField;
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;
+@property (weak, nonatomic) IBOutlet UIButton *myButton;
+@property (strong,nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong,nonatomic) GameModel *myModel;
 
 @end
 
 @implementation GameViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.myTextField.delegate = self;
+    self.myModel = [[GameModel alloc]init];
+    self.myLabel.text=@"Jinx words will be displayed here";
 }
 
-- (void)didReceiveMemoryWarning
+
+
+- (void)viewDidUnload {
+    [self setMyTextField:nil];
+    [self setMyLabel:nil];
+    [self setMyButton:nil];
+    [super viewDidUnload];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.myTextField resignFirstResponder];
+    return YES;
 }
 
+-(void) gameWonWithWord:(NSString *) winningWord
+{
+    [self initializeAudioPlayer];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Victory!" message:@"Jinx! Y'all won!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Play Again", nil];
+    [alert show];
+    
+    
+    
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex ==0){
+        
+    }
+    else
+    {
+        self.myLabel.text=@"Jinx words will be displayed here";
+        self.myTextField.text=nil;
+        [self.myModel clearDictionary];
+        
+        
+    }
+}
+-(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
+{
+    NSString * words = [NSString stringWithFormat:@"The previous words were%@ %@",word1,word2];
+    self.myLabel.text = words;
+    self.myTextField.text =nil;
+}
+
+- (void) initializeAudioPlayer
+{
+    NSString *audioFile;
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:audioFile ofType:@"mp3"];
+    if(path && path.length > 0)
+    {
+        NSURL *url = [NSURL fileURLWithPath:path];
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        self.audioPlayer.delegate = self;
+        [self.audioPlayer prepareToPlay];
+    }
+    
+}
 @end
