@@ -27,6 +27,7 @@
     [super viewDidLoad];
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
+    self.myLabel.text=@"Jinx words will be displayed here";
 }
 
 
@@ -53,6 +54,7 @@
     
     
 }
+
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex ==0){
@@ -60,16 +62,18 @@
     }
     else
     {
-        self.myLabel.text =nil;
+        self.myLabel.text=@"Jinx words will be displayed here";
         self.myTextField.text=nil;
+        [self.myModel clearDictionary];
         
         
     }
 }
--(void) getLastWordPair:(NSString *)word1 Second:(NSString *)word2
+-(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
 {
-    NSString * words = [NSString stringWithFormat:@"%@ %@",word1,word2];
+    NSString * words = [NSString stringWithFormat:@"The previous words were%@ %@",word1,word2];
     self.myLabel.text = words;
+    self.myTextField.text =nil;
 }
 
 - (void) initializeAudioPlayer

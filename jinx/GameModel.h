@@ -10,7 +10,7 @@
 @protocol GameModelDelegate <NSObject>
 
 -(void) gameWonWithWord:(NSString *) winningWord;
--(void) getLastWordPair:(NSString *)word1 Second:(NSString *)word2;
+-(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2;
 
 @end
 
