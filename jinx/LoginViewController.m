@@ -1,5 +1,5 @@
 #import "LoginViewController.h"
-#import <GameKit/GameKit.h> //Elephant
+#import <GameKit/GameKit.h> //Tiger
 
 @interface LoginViewController () <GKGameCenterControllerDelegate>
 
