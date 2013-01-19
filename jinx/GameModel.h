@@ -22,6 +22,8 @@
 
 - (void) userInputedWord:(NSString *)word;
 
+-(void) clearDictionary;
+
 
 
 
