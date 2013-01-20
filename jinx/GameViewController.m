@@ -9,6 +9,11 @@
 #import "GameViewController.h"
 #import "GameModel.h"
 #import <AVFoundation/AVFoundation.h>
+
+#define NETWORK_ERROR_ALERT_TAG 2
+#define VICTORY_ALERT_TAG 3
+#define INVALID_WORD_ALERT_TAG 4
+
 // <Intefaces>
 @interface GameViewController () <UITextFieldDelegate,GameModelDelegate,AVAudioPlayerDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
@@ -30,7 +35,6 @@
     self.myLabel.text=@"Last rounds words are here";
     UIImage *background = [UIImage imageNamed:@"Free-HD-Purple-Space-Backgrounds.jpg"];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
-    
 }
 
 - (IBAction)submitButtonPressed:(UIButton *)sender
@@ -40,17 +44,18 @@
     if(error)
     {
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        alert.tag = INVALID_WORD_ALERT_TAG;
         [alert show];
-        
     }
     else
     {
-    [self.myModel userInputedWord:submitWord];
+        [self.myModel userInputedWord:submitWord];
     }
 }
 
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setMyTextField:nil];
     [self setMyLabel:nil];
     [self setMyButton:nil];
@@ -67,12 +72,14 @@
 {
     [self initializeAudioPlayer];
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Victory!" message:@"Jinx! Y'all won!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Play Again", nil];
+    alert.tag = VICTORY_ALERT_TAG;
     [alert show];
 }
 
 - (void) networkError:(NSString *)errorMessage
 {
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Network Error" message:errorMessage delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    alert.tag = NETWORK_ERROR_ALERT_TAG;
     [alert show];
 }
 
@@ -83,17 +90,28 @@
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex ==0){
-        
-    }
-    else
+    if(alertView.tag == NETWORK_ERROR_ALERT_TAG)
     {
-        self.myLabel.text=@"Last rounds words are here";
-        self.myTextField.text=nil;
-        [self.myModel clearDictionary];
-        
         
     }
+    else if(alertView.tag == VICTORY_ALERT_TAG)
+    {
+        if(buttonIndex ==0)
+        {
+            
+        }
+        else
+        {
+            self.myLabel.text=@"Last rounds words are here";
+            self.myTextField.text=nil;
+            [self.myModel clearDictionary];
+        }
+    }
+    else if(alertView.tag == INVALID_WORD_ALERT_TAG)
+    {
+        
+    }
+
 }
 -(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
 {
