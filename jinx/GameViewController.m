@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GameModel.h"
+#import "UIButton+Disable.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define NETWORK_ERROR_ALERT_TAG 2
@@ -46,6 +47,7 @@
 
 - (IBAction)submitButtonPressed:(UIButton *)sender
 {
+    [self.myButton disableButton];
     NSString * submitWord = self.myTextField.text;
     NSString * error =[self.myModel isValidSubmit:submitWord];
     if(error)
