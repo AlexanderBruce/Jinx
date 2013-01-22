@@ -1,5 +1,6 @@
 #import "LoginViewController.h"
 #import <GameKit/GameKit.h>
+#import "AppDelegate.h"
 #import "GameViewController.h"
 
 @interface LoginViewController () <GKMatchmakerViewControllerDelegate, UIAlertViewDelegate>
@@ -128,7 +129,9 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    self.myMatch = match; // Use a retaining property to retain the match.
+    self.myMatch = match;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentMatch = self.myMatch;
     if (!self.matchStarted && match.expectedPlayerCount == 0)
     {
         self.matchStarted = YES;

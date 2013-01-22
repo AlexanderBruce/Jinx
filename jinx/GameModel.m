@@ -46,13 +46,12 @@
 
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state
 {
-    switch (state)
+    if(state == GKPlayerStateDisconnected || state == GKPlayerStateUnknown)
     {
-        case GKPlayerStateDisconnected:
-            if(!self.localPlayerDisconnected)
-            {
-                [self.delegate partnerDisconnected];   
-            }
+        if(!self.localPlayerDisconnected)
+        {
+            [self.delegate partnerDisconnected];
+        }
     }
 }
 
