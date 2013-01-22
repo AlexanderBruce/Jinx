@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
+#import "GenericViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : GenericViewController
 
 @end

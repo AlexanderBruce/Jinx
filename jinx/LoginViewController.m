@@ -1,8 +1,13 @@
 #import "LoginViewController.h"
-#import <GameKit/GameKit.h> //Tiger
+#import <GameKit/GameKit.h>
+#import "GameViewController.h"
 
 @interface LoginViewController () <GKMatchmakerViewControllerDelegate>
 @property (nonatomic, strong) GKMatch *myMatch;
+@property (nonatomic, strong) GKMatchmakerViewController *myMatchmakerVC;
+@property (nonatomic, strong) GKMatchmakerViewController *myConnectingVC;
+@property (nonatomic) BOOL matchStarted;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *myActivityIndicator;
 @end
 
 @implementation LoginViewController
@@ -10,17 +15,32 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.destinationViewController isKindOfClass:[LoginViewController class]])
+    if([segue.destinationViewController isKindOfClass:[GameViewController class]])
     {
-        LoginViewController *dest = (LoginViewController *) segue.destinationViewController;
+        GameViewController *dest = (GameViewController *) segue.destinationViewController;
         dest.myMatch = self.myMatch;
     }
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    [self authenticateLocalPlayer];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.myActivityIndicator startAnimating];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [self.myActivityIndicator stopAnimating];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self authenticateLocalPlayer];
 }
 
 - (void) authenticateLocalPlayer
@@ -31,12 +51,8 @@
         [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
             if (localPlayer.isAuthenticated)
             {
-
-//                [self installInvitationHandler];
-
-                [self performSegueWithIdentifier:@"gameSegue" sender:self];
-
-//                [self createMatch];
+                [self installInvitationHandler];
+                [self createMatch];
             }
             else
             {
@@ -45,65 +61,98 @@
             }
         }];
     }
+    else
+    {
+        [self installInvitationHandler];
+        [self createMatch];
+    }
 }
 
+- (void) createMatchWithPlayersToInvite: (NSArray *) toInvite
+{
+    GKMatchRequest *request = [[GKMatchRequest alloc] init];
+    request.minPlayers = 2;
+    request.maxPlayers = 2;
+    request.playersToInvite = toInvite;
+    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+    self.myMatchmakerVC = mmvc;
+    mmvc.hosted = NO;
+    mmvc.matchmakerDelegate = self;
+    [self presentViewController:mmvc animated:YES completion:nil];
+}
+
+- (void) createMatch
+{
+    [self createMatchWithPlayersToInvite:nil];
+}
 
 - (void) installInvitationHandler
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Install invitation handler" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    [alert show];
     [GKMatchmaker sharedMatchmaker].inviteHandler = ^(GKInvite *acceptedInvite, NSArray *playersToInvite) {
         // Insert game-specific code here to clean up any game in progress.
         if (acceptedInvite)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Accepted invite" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-            [alert show];
-            GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
-            mmvc.matchmakerDelegate = self;
-            [self presentViewController:mmvc animated:YES completion:nil];
+            if(self.myConnectingVC) return;
+            else if(self.myMatchmakerVC)
+            {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    self.myMatchmakerVC = nil;
+                    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
+                    mmvc.matchmakerDelegate = self;
+                    self.myConnectingVC = mmvc;
+                    [self presentViewController:mmvc animated:YES completion:nil];
+                }];
+            }
+            else
+            {
+                GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
+                mmvc.matchmakerDelegate = self;
+                [self presentViewController:mmvc animated:YES completion:nil];
+            }
         }
         else if (playersToInvite)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Players to invite" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-            [alert show];
-            [self createMatch];
+            [self createMatchWithPlayersToInvite:playersToInvite];
         }
     };
-}
-
-
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     self.myMatch = match; // Use a retaining property to retain the match.
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Did find match" message:nil delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    [alert show];
-//    match.delegate = self;
-//    if (!self.matchStarted && match.expectedPlayerCount == 0)
-//    {
-//        self.matchStarted = YES;
-//        // Insert game-specific code to start the match.
-//    }
+    if (!self.matchStarted && match.expectedPlayerCount == 0)
+    {
+        self.matchStarted = YES;
+        [self performSegueWithIdentifier:@"gameSegue" sender:self];
+    }
 }
 
-- (void) createMatch
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
 {
-    GKMatchRequest *request = [[GKMatchRequest alloc] init];
-    request.minPlayers = 2;
-    request.maxPlayers = 2;
-    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-    mmvc.matchmakerDelegate = self;
-    [self presentViewController:mmvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:
+     ^{
+         self.myMatchmakerVC = nil;
+         self.myConnectingVC = nil;
+         [self.navigationController popViewControllerAnimated:YES];
+     }];
+
 }
 
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
+
+    [self dismissViewControllerAnimated:YES completion:^
+     {
+         self.myConnectingVC = nil;
+         self.myMatchmakerVC = nil;
+         [self createMatch];
+     }];
+}
+
+- (void)viewDidUnload {
+    [self setMyActivityIndicator:nil];
+    [super viewDidUnload];
+}
 @end

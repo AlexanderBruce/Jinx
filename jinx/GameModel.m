@@ -11,6 +11,7 @@
 
 - (void) setMyMatch:(GKMatch *)myMatch
 {
+    NSLog(@"Setting my match = %@",myMatch);
     _myMatch = myMatch;
     _myMatch.delegate = self;
 }
@@ -59,6 +60,7 @@
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID
 {
     self.partnerWord = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [[[UIAlertView alloc] initWithTitle:self.partnerWord message:@"" delegate:nil cancelButtonTitle:@"" otherButtonTitles:nil] show];
     if(self.myWord && self.myWord.length > 0)
     {
         if([self.myWord caseInsensitiveCompare:self.partnerWord] == NSOrderedSame)

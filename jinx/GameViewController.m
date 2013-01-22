@@ -32,9 +32,13 @@
     [super viewDidLoad];
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
+    self.myModel.myMatch = self.myMatch;
     self.myLabel.text=@"Last rounds words are here";
-    UIImage *background = [UIImage imageNamed:@"Free-HD-Purple-Space-Backgrounds.jpg"];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
+}
+
+- (IBAction)homePressed:(UIBarButtonItem *)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)submitButtonPressed:(UIButton *)sender

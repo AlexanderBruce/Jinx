@@ -1,59 +1,122 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="pjg-M4-eUO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="pjg-M4-eUO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="B6n-EP-1ik">
             <objects>
                 <navigationController definesPresentationContext="YES" id="pjg-M4-eUO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nW0-rt-i1A">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="nW0-rt-i1A">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="rFl-Ds-lgO"/>
+                        <segue destination="ETb-cp-xwa" kind="relationship" relationship="rootViewController" id="u3t-nT-g9W"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PW5-ci-GFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-512" y="-52"/>
+            <point key="canvasLocation" x="-623" y="-58"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Generic View Controller-->
+        <scene sceneID="png-Y2-qNR">
+            <objects>
+                <viewController id="ETb-cp-xwa" customClass="GenericViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="INs-so-iQq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jr7-j6-Da6">
+                                <rect key="frame" x="58" y="167" width="205" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="Play-button.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="JlB-uz-eoo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WFw-Er-Qe9">
+                                <rect key="frame" x="58" y="292" width="205" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="Stats-button.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vpi-eW-XfM" kind="push" id="Zig-4w-DU9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="J I N X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4rH-EE-ra8">
+                                <rect key="frame" x="67" y="45" width="187" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="60"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tsf-bA-xaf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ph-dL-aqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-181" y="-58"/>
+        </scene>
+        <!--Login View Controller - Login-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="H42-Qo-Muw">
+                                <rect key="frame" x="142" y="164" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="W5c-TX-pQr"/>
+                    <navigationItem key="navigationItem" title="Login" id="W5c-TX-pQr"/>
                     <connections>
+                        <outlet property="myActivityIndicator" destination="H42-Qo-Muw" id="jze-YO-h7D"/>
                         <segue destination="cl4-Mh-dzf" kind="push" identifier="gameSegue" id="wjw-nD-EpG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231" y="64"/>
+            <point key="canvasLocation" x="220" y="-58"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Game View Controller - Play-->
         <scene sceneID="txg-ej-B3D">
             <objects>
                 <viewController id="cl4-Mh-dzf" customClass="GameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PKv-ZH-iTV">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Jinx word here" minimumFontSize="17" id="B66-0m-F2b">
-                                <rect key="frame" x="20" y="105" width="280" height="30"/>
+                                <rect key="frame" x="20" y="85" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LSA-vA-wuP">
-                                <rect key="frame" x="103" y="179" width="114" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LSA-vA-wuP">
+                                <rect key="frame" x="143" y="163" width="157" height="61"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Submit" image="Submit-button.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -65,7 +128,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxz-XY-bdY">
-                                <rect key="frame" x="20" y="44" width="280" height="34"/>
+                                <rect key="frame" x="20" y="35" width="280" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -73,7 +136,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.82458160843743489" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Pck-qr-vbT"/>
+                    <navigationItem key="navigationItem" title="Play" id="Pck-qr-vbT">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="lj7-dN-hAg">
+                            <connections>
+                                <action selector="homePressed:" destination="cl4-Mh-dzf" id="5DP-6T-6gM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myButton" destination="LSA-vA-wuP" id="fDx-bg-gb6"/>
                         <outlet property="myLabel" destination="kxz-XY-bdY" id="HTi-i3-4A1"/>
@@ -84,24 +153,54 @@
             </objects>
             <point key="canvasLocation" x="754" y="64"/>
         </scene>
+        <!--Stats View Controller - Stats-->
+        <scene sceneID="gwv-lm-74b">
+            <objects>
+                <viewController id="Vpi-eW-XfM" customClass="StatsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nLM-ff-NEw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stats" id="H46-Vp-IeU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sg2-Jz-agN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="563"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Play-button.png" width="302" height="102"/>
+        <image name="Stats-button.png" width="302" height="102"/>
+        <image name="Submit-button.png" width="302" height="102"/>
+    </resources>
     <classes>
-        <class className="GameViewController" superclassName="UIViewController">
+        <class className="GameViewController" superclassName="GenericViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="homePressed:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="submitButtonPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="myButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="myLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="myTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="LoginViewController" superclassName="UIViewController">
+        <class className="GenericViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="GenericViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myActivityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="StatsViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
