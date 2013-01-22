@@ -2,7 +2,7 @@
 #import <GameKit/GameKit.h>
 #import "GameViewController.h"
 
-@interface LoginViewController () <GKMatchmakerViewControllerDelegate>
+@interface LoginViewController () <GKMatchmakerViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) GKMatch *myMatch;
 @property (nonatomic, strong) GKMatchmakerViewController *myMatchmakerVC;
 @property (nonatomic, strong) GKMatchmakerViewController *myConnectingVC;
@@ -43,6 +43,11 @@
     [super viewDidAppear:animated];
 }
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) authenticateLocalPlayer
 {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -56,7 +61,7 @@
             }
             else
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:self cancelButtonTitle:@"Go Back" otherButtonTitles:nil];
                 [alert show];
             }
         }];
@@ -78,6 +83,7 @@
     self.myMatchmakerVC = mmvc;
     mmvc.hosted = NO;
     mmvc.matchmakerDelegate = self;
+    NSLog(@"Present 1");
     [self presentViewController:mmvc animated:YES completion:nil];
 }
 
@@ -100,6 +106,7 @@
                     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                     mmvc.matchmakerDelegate = self;
                     self.myConnectingVC = mmvc;
+                    NSLog(@"Present 2");
                     [self presentViewController:mmvc animated:YES completion:nil];
                 }];
             }
@@ -107,6 +114,7 @@
             {
                 GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                 mmvc.matchmakerDelegate = self;
+                NSLog(@"Present 3");
                 [self presentViewController:mmvc animated:YES completion:nil];
             }
         }
@@ -131,6 +139,7 @@
 
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
 {
+    [[[UIAlertView alloc] initWithTitle:@"Cancelled" message:@"" delegate:nil cancelButtonTitle:@"" otherButtonTitles: nil] show];
     [self dismissViewControllerAnimated:YES completion:
      ^{
          self.myMatchmakerVC = nil;
@@ -142,7 +151,7 @@
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
-
+    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"" delegate:nil cancelButtonTitle:@"" otherButtonTitles: nil] show];
     [self dismissViewControllerAnimated:YES completion:^
      {
          self.myConnectingVC = nil;

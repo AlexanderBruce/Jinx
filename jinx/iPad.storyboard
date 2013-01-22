@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wH4-zu-bh0">
-                                <rect key="frame" x="209" y="723" width="351" height="102"/>
+                                <rect key="frame" x="209" y="700" width="351" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="Stats-button.png">
@@ -114,7 +114,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Jinx word here" minimumFontSize="17" id="4eN-X4-oeV">
                                 <rect key="frame" x="59" y="172" width="650" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c72-99-41T">
@@ -135,7 +135,14 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IUe-eb-eYL">
                                 <rect key="frame" x="59" y="92" width="650" height="27"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Round 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aON-XS-TDk">
+                                <rect key="frame" x="509" y="20" width="200" height="27"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -153,6 +160,7 @@
                     <connections>
                         <outlet property="myButton" destination="c72-99-41T" id="f1p-XA-uvI"/>
                         <outlet property="myLabel" destination="IUe-eb-eYL" id="SX9-sM-qsX"/>
+                        <outlet property="myRoundLabel" destination="aON-XS-TDk" id="Y78-kD-tF2"/>
                         <outlet property="myTextField" destination="4eN-X4-oeV" id="ZDJ-Yd-RYG"/>
                     </connections>
                 </viewController>
@@ -190,6 +198,7 @@
                 <relationship kind="action" name="submitButtonPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="myButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="myLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myRoundLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="myTextField" candidateClass="UITextField"/>
             </relationships>
         </class>

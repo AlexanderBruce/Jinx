@@ -109,8 +109,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Jinx word here" minimumFontSize="17" id="B66-0m-F2b">
-                                <rect key="frame" x="20" y="85" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <rect key="frame" x="20" y="98" width="280" height="30"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LSA-vA-wuP">
@@ -128,8 +128,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxz-XY-bdY">
-                                <rect key="frame" x="20" y="35" width="280" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <rect key="frame" x="20" y="56" width="280" height="34"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Round 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W4U-b1-hhn">
+                                <rect key="frame" x="178" y="14" width="122" height="34"/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -146,6 +152,7 @@
                     <connections>
                         <outlet property="myButton" destination="LSA-vA-wuP" id="fDx-bg-gb6"/>
                         <outlet property="myLabel" destination="kxz-XY-bdY" id="HTi-i3-4A1"/>
+                        <outlet property="myRoundLabel" destination="W4U-b1-hhn" id="Tsv-bi-n2f"/>
                         <outlet property="myTextField" destination="B66-0m-F2b" id="kzu-y9-Gx9"/>
                     </connections>
                 </viewController>

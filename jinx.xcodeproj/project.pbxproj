@@ -34,6 +34,7 @@
 		4921E54916AE35DD00ECB11E /* Play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4921E54716AE35DD00ECB11E /* Play-button.png */; };
 		4921E54B16AE3B8C00ECB11E /* Submit-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4921E54A16AE3B8C00ECB11E /* Submit-button.png */; };
 		4921E55B16AEFB4000ECB11E /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4921E55A16AEFB4000ECB11E /* iPad.storyboard */; };
+		4921E57016AF22AF00ECB11E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921E55716AEFA5500ECB11E /* MBProgressHUD.m */; };
 		FA3B941E16AB2922007C572F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B941D16AB2922007C572F /* GameViewController.m */; };
 		FA3B942216AB293B007C572F /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B942116AB293B007C572F /* GameModel.m */; };
 		FA3B942416AB497C007C572F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3B942316AB497C007C572F /* AVFoundation.framework */; };
@@ -78,6 +79,7 @@
 		4921E55616AEFA5500ECB11E /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4921E55716AEFA5500ECB11E /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4921E55A16AEFB4000ECB11E /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		4921E56D16AF221E00ECB11E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		FA3B941C16AB2922007C572F /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		FA3B941D16AB2922007C572F /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FA3B942016AB293B007C572F /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		4921E55416AEFA1D00ECB11E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				4921E56D16AF221E00ECB11E /* Constants.h */,
 				4921E55816AEFA5A00ECB11E /* MBProgressHUD */,
 			);
 			name = Library;
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4921E57016AF22AF00ECB11E /* MBProgressHUD.m in Sources */,
 				49164FFC16A87B5E0094BE03 /* LoginViewController.m in Sources */,
 				49164FE416A87A720094BE03 /* main.m in Sources */,
 				49164FE816A87A720094BE03 /* AppDelegate.m in Sources */,

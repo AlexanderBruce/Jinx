@@ -13,6 +13,7 @@
 #define NETWORK_ERROR_ALERT_TAG 2
 #define VICTORY_ALERT_TAG 3
 #define INVALID_WORD_ALERT_TAG 4
+#define PARTNER_DISCONNECT_TAG 5
 
 // <Intefaces>
 @interface GameViewController () <UITextFieldDelegate,GameModelDelegate,AVAudioPlayerDelegate,UIAlertViewDelegate>
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
 @property (strong,nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong,nonatomic) GameModel *myModel;
-
+@property (weak, nonatomic) IBOutlet UILabel *myRoundLabel;
 @end
 
 @implementation GameViewController
@@ -33,11 +34,13 @@
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
     self.myModel.myMatch = self.myMatch;
+    self.myModel.delegate = self;
     self.myLabel.text=@"Last rounds words are here";
 }
 
 - (IBAction)homePressed:(UIBarButtonItem *)sender
 {
+    [self.myModel disconnectFromMatch];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -63,6 +66,7 @@
     [self setMyTextField:nil];
     [self setMyLabel:nil];
     [self setMyButton:nil];
+    [self setMyRoundLabel:nil];
     [super viewDidUnload];
 }
 
@@ -87,14 +91,20 @@
     [alert show];
 }
 
-- (void) playerDisconnected
+- (void) partnerDisconnected
 {
-    //TODO: Player disconnected - go back
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Partner Disconnect" message:@"Your partner has left the game" delegate:self cancelButtonTitle:@"Go Home" otherButtonTitles: nil];
+    alert.tag = PARTNER_DISCONNECT_TAG;
+    [alert show];
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(alertView.tag == NETWORK_ERROR_ALERT_TAG)
+    if(alertView.tag == PARTNER_DISCONNECT_TAG)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if(alertView.tag == NETWORK_ERROR_ALERT_TAG)
     {
         
     }
@@ -109,6 +119,7 @@
             self.myLabel.text=@"Last rounds words are here";
             self.myTextField.text=nil;
             [self.myModel clearDictionary];
+            self.myRoundLabel.text = [NSString stringWithFormat:@"Round %d",[self.myModel getRoundNumber]];
         }
     }
     else if(alertView.tag == INVALID_WORD_ALERT_TAG)
@@ -122,6 +133,7 @@
     NSString * words = [NSString stringWithFormat:@"Last Round:%@ %@",word1,word2];
     self.myLabel.text = words;
     self.myTextField.text =nil;
+    self.myRoundLabel.text = [NSString stringWithFormat:@"Round %d",[self.myModel getRoundNumber]];
 }
 
 - (void) initializeAudioPlayer
