@@ -21,4 +21,15 @@
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
 }
 
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+    }
+    else
+    {
+        return YES;
+    }
+}
 @end

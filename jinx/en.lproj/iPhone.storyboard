@@ -174,30 +174,6 @@
         <image name="Stats-button.png" width="302" height="102"/>
         <image name="Submit-button.png" width="302" height="102"/>
     </resources>
-    <classes>
-        <class className="GameViewController" superclassName="GenericViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="homePressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="submitButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="myLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="myTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="GenericViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="GenericViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="myActivityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="StatsViewController" superclassName="GenericViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

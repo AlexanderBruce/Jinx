@@ -16,7 +16,7 @@
 		49164FEA16A87A720094BE03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49164FE916A87A720094BE03 /* Default.png */; };
 		49164FEC16A87A720094BE03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49164FEB16A87A720094BE03 /* Default@2x.png */; };
 		49164FEE16A87A720094BE03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49164FED16A87A720094BE03 /* Default-568h@2x.png */; };
-		49164FF116A87A720094BE03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49164FEF16A87A720094BE03 /* MainStoryboard.storyboard */; };
+		49164FF116A87A720094BE03 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49164FEF16A87A720094BE03 /* iPhone.storyboard */; };
 		49164FFC16A87B5E0094BE03 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49164FFB16A87B0E0094BE03 /* LoginViewController.m */; };
 		4916500216A87B820094BE03 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916500116A87B820094BE03 /* GameKit.framework */; };
 		4921E52E16AE2AEC00ECB11E /* GenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921E52D16AE2AEC00ECB11E /* GenericViewController.m */; };
@@ -33,6 +33,7 @@
 		4921E54816AE35DD00ECB11E /* Stats-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4921E54616AE35DD00ECB11E /* Stats-button.png */; };
 		4921E54916AE35DD00ECB11E /* Play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4921E54716AE35DD00ECB11E /* Play-button.png */; };
 		4921E54B16AE3B8C00ECB11E /* Submit-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4921E54A16AE3B8C00ECB11E /* Submit-button.png */; };
+		4921E55B16AEFB4000ECB11E /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4921E55A16AEFB4000ECB11E /* iPad.storyboard */; };
 		FA3B941E16AB2922007C572F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B941D16AB2922007C572F /* GameViewController.m */; };
 		FA3B942216AB293B007C572F /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B942116AB293B007C572F /* GameModel.m */; };
 		FA3B942416AB497C007C572F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3B942316AB497C007C572F /* AVFoundation.framework */; };
@@ -53,7 +54,7 @@
 		49164FE916A87A720094BE03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		49164FEB16A87A720094BE03 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		49164FED16A87A720094BE03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		49164FF016A87A720094BE03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		49164FF016A87A720094BE03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		49164FFA16A87B0E0094BE03 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		49164FFB16A87B0E0094BE03 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4916500116A87B820094BE03 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -76,6 +77,7 @@
 		4921E54A16AE3B8C00ECB11E /* Submit-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Submit-button.png"; sourceTree = "<group>"; };
 		4921E55616AEFA5500ECB11E /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4921E55716AEFA5500ECB11E /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4921E55A16AEFB4000ECB11E /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		FA3B941C16AB2922007C572F /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		FA3B941D16AB2922007C572F /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FA3B942016AB293B007C572F /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
@@ -138,10 +140,11 @@
 				FA3B941D16AB2922007C572F /* GameViewController.m */,
 				4921E52C16AE2AEC00ECB11E /* GenericViewController.h */,
 				4921E52D16AE2AEC00ECB11E /* GenericViewController.m */,
+				4921E55A16AEFB4000ECB11E /* iPad.storyboard */,
+				49164FEF16A87A720094BE03 /* iPhone.storyboard */,
 				4921E55416AEFA1D00ECB11E /* Library */,
 				49164FFA16A87B0E0094BE03 /* LoginViewController.h */,
 				49164FFB16A87B0E0094BE03 /* LoginViewController.m */,
-				49164FEF16A87A720094BE03 /* MainStoryboard.storyboard */,
 				4921E55916AEFA7200ECB11E /* Media */,
 				4921E53716AE328E00ECB11E /* StatsViewController.h */,
 				4921E53816AE328E00ECB11E /* StatsViewController.m */,
@@ -259,7 +262,7 @@
 				49164FEA16A87A720094BE03 /* Default.png in Resources */,
 				49164FEC16A87A720094BE03 /* Default@2x.png in Resources */,
 				49164FEE16A87A720094BE03 /* Default-568h@2x.png in Resources */,
-				49164FF116A87A720094BE03 /* MainStoryboard.storyboard in Resources */,
+				49164FF116A87A720094BE03 /* iPhone.storyboard in Resources */,
 				FA3B942616AB4E78007C572F /* Free-HD-Purple-Space-Backgrounds.jpg in Resources */,
 				4921E53216AE2F4700ECB11E /* button-1.png in Resources */,
 				4921E53416AE2FEE00ECB11E /* button-2.png in Resources */,
@@ -273,6 +276,7 @@
 				4921E54816AE35DD00ECB11E /* Stats-button.png in Resources */,
 				4921E54916AE35DD00ECB11E /* Play-button.png in Resources */,
 				4921E54B16AE3B8C00ECB11E /* Submit-button.png in Resources */,
+				4921E55B16AEFB4000ECB11E /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,12 +308,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		49164FEF16A87A720094BE03 /* MainStoryboard.storyboard */ = {
+		49164FEF16A87A720094BE03 /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				49164FF016A87A720094BE03 /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -376,7 +380,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "84581AA2-4F6F-46F5-88C4-4BB6BA612FEF";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -392,7 +396,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "84581AA2-4F6F-46F5-88C4-4BB6BA612FEF";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
