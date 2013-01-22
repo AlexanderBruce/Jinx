@@ -170,7 +170,7 @@
     [self.myButton enableButton];
     self.myTextField.enabled=YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    NSString * words = [NSString stringWithFormat:@"Last Round:%@ %@",word1,word2];
+    NSString * words = [NSString stringWithFormat:@"Last Round:\n%@ \n%@",word1,word2];
     self.myLabel.text = words;
     self.myTextField.text =nil;
     self.myRoundLabel.text = [NSString stringWithFormat:@"Round %d",[self.myModel getRoundNumber]];

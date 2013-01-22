@@ -37,6 +37,10 @@
     {
         return [NSString stringWithFormat:@"Invalid Word: %@ has already been used",word];
     }
+    else if(![[word stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+    {
+        return [NSString stringWithFormat:@"Invalid Word: White space is not a valid submit"];
+    }
     else if(![[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "]] isEqualToString:@""])
     {
         return [NSString stringWithFormat:@"Invalid Word: Your word can only contain letters"];
