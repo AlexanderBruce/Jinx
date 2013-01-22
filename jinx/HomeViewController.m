@@ -1,12 +1,5 @@
-//
-//  HomeViewController.m
-//  jinx
-//
-//  Created by Andrew Patterson on 1/22/13.
-//  Copyright (c) 2013 Duke University. All rights reserved.
-//
-
 #import "HomeViewController.h"
+#import "AppDelegate.h"
 
 @interface HomeViewController ()
 
@@ -14,25 +7,13 @@
 
 @implementation HomeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.navigationController = self.navigationController;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

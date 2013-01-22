@@ -36,6 +36,7 @@
 		4921E55B16AEFB4000ECB11E /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4921E55A16AEFB4000ECB11E /* iPad.storyboard */; };
 		4921E57016AF22AF00ECB11E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921E55716AEFA5500ECB11E /* MBProgressHUD.m */; };
 		4921E58716AF3ED000ECB11E /* UIButton+Disable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921E58616AF3E3300ECB11E /* UIButton+Disable.m */; };
+		4921E59216AF4A1900ECB11E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4921E59116AF4A1900ECB11E /* HomeViewController.m */; };
 		FA3B941E16AB2922007C572F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B941D16AB2922007C572F /* GameViewController.m */; };
 		FA3B942216AB293B007C572F /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3B942116AB293B007C572F /* GameModel.m */; };
 		FA3B942416AB497C007C572F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3B942316AB497C007C572F /* AVFoundation.framework */; };
@@ -83,6 +84,8 @@
 		4921E56D16AF221E00ECB11E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4921E58516AF3E3300ECB11E /* UIButton+Disable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Disable.h"; sourceTree = "<group>"; };
 		4921E58616AF3E3300ECB11E /* UIButton+Disable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Disable.m"; sourceTree = "<group>"; };
+		4921E59016AF4A1800ECB11E /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4921E59116AF4A1900ECB11E /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		FA3B941C16AB2922007C572F /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		FA3B941D16AB2922007C572F /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FA3B942016AB293B007C572F /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				4921E53716AE328E00ECB11E /* StatsViewController.h */,
 				4921E53816AE328E00ECB11E /* StatsViewController.m */,
 				49164FDE16A87A720094BE03 /* Supporting Files */,
+				4921E59016AF4A1800ECB11E /* HomeViewController.h */,
+				4921E59116AF4A1900ECB11E /* HomeViewController.m */,
 			);
 			path = jinx;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				FA3B942216AB293B007C572F /* GameModel.m in Sources */,
 				4921E52E16AE2AEC00ECB11E /* GenericViewController.m in Sources */,
 				4921E53916AE328E00ECB11E /* StatsViewController.m in Sources */,
+				4921E59216AF4A1900ECB11E /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

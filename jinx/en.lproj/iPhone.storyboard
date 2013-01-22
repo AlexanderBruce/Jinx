@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-623" y="-58"/>
         </scene>
-        <!--Generic View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="png-Y2-qNR">
             <objects>
-                <viewController id="ETb-cp-xwa" customClass="GenericViewController" sceneMemberID="viewController">
+                <viewController id="ETb-cp-xwa" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="INs-so-iQq">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

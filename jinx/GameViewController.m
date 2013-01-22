@@ -58,7 +58,8 @@
 
 - (IBAction)submitButtonPressed:(UIButton *)sender
 {
-    [self.myButton disableButton];
+    NSLog(@"submit pressed");
+    
     NSString * submitWord = self.myTextField.text;
     NSString * error =[self.myModel isValidSubmit:submitWord];
     if(error)
@@ -69,7 +70,6 @@
     }
     else
     {
-        [self.myModel userInputedWord:submitWord];
         MBProgressHUD *progressIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES fontSize:PROGRESS_INDICATOR_LABEL_FONT_SIZE];
         progressIndicator.animationType = MBProgressHUDAnimationFade;
         progressIndicator.mode = MBProgressHUDModeIndeterminate;
@@ -78,13 +78,8 @@
         progressIndicator.taskInProgress = YES;
         progressIndicator.removeFromSuperViewOnHide = YES;
         self.myTextField.enabled=NO;
-        
-        
-        
-        
-        
-        
-        
+        [self.myButton disableButton];
+        [self.myModel userInputedWord:submitWord];  
     }
 }
 
@@ -171,6 +166,7 @@
 }
 -(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
 {
+    NSLog(@"Game progresses With word");
     [self.myButton enableButton];
     self.myTextField.enabled=YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
