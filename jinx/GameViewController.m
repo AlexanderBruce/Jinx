@@ -10,11 +10,16 @@
 #import "GameModel.h"
 #import "UIButton+Disable.h"
 #import <AVFoundation/AVFoundation.h>
+#import "MBProgressHUD.h"
+#import "Constants.h"
 
 #define NETWORK_ERROR_ALERT_TAG 2
 #define VICTORY_ALERT_TAG 3
 #define INVALID_WORD_ALERT_TAG 4
 #define PARTNER_DISCONNECT_TAG 5
+#define WARNING_ALERT_TAG 6
+#define LABEL_TEXT @"Waiting for partner"
+
 
 // <Intefaces>
 @interface GameViewController () <UITextFieldDelegate,GameModelDelegate,AVAudioPlayerDelegate,UIAlertViewDelegate>
@@ -37,12 +42,18 @@
     self.myModel.myMatch = self.myMatch;
     self.myModel.delegate = self;
     self.myLabel.text=@"Last rounds words are here";
+    [self.myButton enableButton];
+    self.myTextField.enabled =YES;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
 }
 
 - (IBAction)homePressed:(UIBarButtonItem *)sender
 {
-    [self.myModel disconnectFromMatch];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+    alert.tag = WARNING_ALERT_TAG;
+    [alert show];
+    
 }
 
 - (IBAction)submitButtonPressed:(UIButton *)sender
@@ -59,6 +70,21 @@
     else
     {
         [self.myModel userInputedWord:submitWord];
+        MBProgressHUD *progressIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES fontSize:PROGRESS_INDICATOR_LABEL_FONT_SIZE];
+        progressIndicator.animationType = MBProgressHUDAnimationFade;
+        progressIndicator.mode = MBProgressHUDModeIndeterminate;
+        progressIndicator.labelText = LABEL_TEXT;
+        progressIndicator.dimBackground = NO;
+        progressIndicator.taskInProgress = YES;
+        progressIndicator.removeFromSuperViewOnHide = YES;
+        self.myTextField.enabled=NO;
+        
+        
+        
+        
+        
+        
+        
     }
 }
 
@@ -121,6 +147,9 @@
             self.myLabel.text=@"Last rounds words are here";
             self.myTextField.text=nil;
             [self.myModel clearDictionary];
+            [self.myButton enableButton];
+            self.myTextField.enabled=YES;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             self.myRoundLabel.text = [NSString stringWithFormat:@"Round %d",[self.myModel getRoundNumber]];
         }
     }
@@ -128,10 +157,23 @@
     {
         
     }
+    
+    else if (alertView.tag == WARNING_ALERT_TAG)
+    {
+        if(buttonIndex==0)
+        {
+        [self.myModel disconnectFromMatch];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        
+    }
 
 }
 -(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
 {
+    [self.myButton enableButton];
+    self.myTextField.enabled=YES;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString * words = [NSString stringWithFormat:@"Last Round:%@ %@",word1,word2];
     self.myLabel.text = words;
     self.myTextField.text =nil;
