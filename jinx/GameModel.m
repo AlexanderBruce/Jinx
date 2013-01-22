@@ -13,7 +13,6 @@
 
 - (void) setMyMatch:(GKMatch *)myMatch
 {
-    NSLog(@"Setting my match = %@",myMatch);
     _myMatch = myMatch;
     _myMatch.delegate = self;
 }
@@ -99,7 +98,6 @@
 
 - (void) storeStats
 {
-    //TODO: Store stats
 }
 
 - (void) userInputedWord:(NSString *)word
