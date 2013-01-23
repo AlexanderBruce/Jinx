@@ -1,4 +1,5 @@
 #import "GameModel.h"
+#import "AppDelegate.h"
 
 @interface GameModel() <GKMatchDelegate>
 @property (nonatomic, strong) NSMutableSet *usedWords;
@@ -37,9 +38,9 @@
     {
         return [NSString stringWithFormat:@"Invalid Word: %@ has already been used",word];
     }
-    else if(![[word stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+    else if([[word stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
     {
-        return [NSString stringWithFormat:@"Invalid Word: White space is not a valid submit"];
+        return [NSString stringWithFormat:@"Invalid Word: Your word cannot contain only spaces"];
     }
     else if(![[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "]] isEqualToString:@""])
     {
@@ -125,6 +126,8 @@
         self.myWord = @"";
         self.roundNumber = 1;
         self.localPlayerDisconnected = NO;
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.myGameModel = self;
     }
     return self;
 }

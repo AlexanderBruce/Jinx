@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GameModel.h"
 
 @implementation AppDelegate
 
@@ -24,7 +25,14 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [self.currentMatch disconnect];
+    if(self.myGameModel)
+    {
+        [self.myGameModel disconnectFromMatch];
+    }
+    else
+    {
+        [self.currentMatch disconnect];
+    }
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -33,7 +41,7 @@
 {
     if(self.navigationController.viewControllers.count > 1)
     {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
