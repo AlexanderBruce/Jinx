@@ -46,7 +46,7 @@
     self.myModel = [[GameModel alloc]init];
     self.myModel.myMatch = self.myMatch;
     self.myModel.delegate = self;
-    self.myLastWordLabel.text = [NSString stringWithFormat:MY_LAST_WORD_LABEL,@"None"];
+    self.myLastWordLabel.text = [NSString stringWithFormat:MY_LAST_WORD_LABEL,@"N/A"];
     self.partnersLastWordLabel.text = [NSString stringWithFormat:PARTNER_LAST_WORD_LABEL, @"N/A"];
     [self.myButton enableButton];
     self.myTextField.enabled =YES;

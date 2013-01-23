@@ -1,12 +1,16 @@
 #import "GameModel.h"
 #import "AppDelegate.h"
 
+#define MAINTAIN_CONNECTION_TIMER_FREQ 1
+#define MAINTAIN_CONNECTION_MESSAGE @"@###@"
+
 @interface GameModel() <GKMatchDelegate>
 @property (nonatomic, strong) NSMutableSet *usedWords;
 @property (nonatomic, strong) NSString *partnerWord;
 @property (nonatomic, strong) NSString *myWord;
 @property (nonatomic) int roundNumber;
 @property (nonatomic) BOOL localPlayerIntentionallyDisconnected;
+@property (nonatomic, strong) NSTimer *maintainConnectionTimer;
 @end
 
 @implementation GameModel
@@ -16,6 +20,24 @@
 {
     _myMatch = myMatch;
     _myMatch.delegate = self;
+    @try
+    {
+        self.maintainConnectionTimer = [NSTimer scheduledTimerWithTimeInterval:MAINTAIN_CONNECTION_TIMER_FREQ target:self selector:@selector(maintainConnection) userInfo:nil repeats:YES];
+    }
+    @catch (NSException *exception) {}
+}
+
+/* 
+ * This is needed so that the match connection does not timeout 
+ */
+- (void) maintainConnection
+{
+    @try
+    {
+        NSData* data = [MAINTAIN_CONNECTION_MESSAGE dataUsingEncoding:NSUTF8StringEncoding];
+        [self.myMatch sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:nil];
+    }
+    @catch (NSException *exception) {}
 }
 
 - (int) getRoundNumber
@@ -42,7 +64,7 @@
     {
         return [NSString stringWithFormat:@"Invalid Word: Your word cannot contain only spaces"];
     }
-    else if(![[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "]] isEqualToString:@""])
+    else if(![[word stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "]] isEqualToString:@""])
     {
         return [NSString stringWithFormat:@"Invalid Word: Your word can only contain letters"];
     }
@@ -51,36 +73,56 @@
 
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state
 {
-        [[[UIAlertView alloc] initWithTitle:@"DidChangeState" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
-    if(state == GKPlayerStateDisconnected || state == GKPlayerStateUnknown)
+    if(state == GKPlayerStateConnected)
     {
-//        NSString *message = (state == GKPlayerStateDisconnected) ? @"Disconnected" : @"Unknown";
-
-        if([playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] && !self.localPlayerIntentionallyDisconnected)
-        {
-            [self.delegate networkError:@"You were disconnected"];
-        }
-        else if(!self.localPlayerIntentionallyDisconnected)
-        {
-            [self.delegate partnerDisconnected];
-        }
+        [[[UIAlertView alloc] initWithTitle:@"Reconnected" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
     }
+    if(state == GKPlayerStateDisconnected)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Disconnected" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+    }
+//    if(state == GKPlayerStateUnknown)
+//    {
+//        [[[UIAlertView alloc] initWithTitle:@"Unknown" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+//    }
+//    if(state == GKPlayerStateDisconnected || state == GKPlayerStateUnknown)
+//    {
+////        NSString *message = (state == GKPlayerStateDisconnected) ? @"Disconnected" : @"Unknown";
+//
+//        if([playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] && !self.localPlayerIntentionallyDisconnected)
+//        {
+//            [self.delegate networkError:@"You were disconnected"];
+//        }
+//        else if(!self.localPlayerIntentionallyDisconnected)
+//        {
+//            [self.delegate partnerDisconnected];
+//        }
+//    }
+}
+
+- (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID
+{
+    return YES;
 }
 
 - (void) sendWord: (NSString *) word
 {
     NSData* data = [word dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
-    [self.myMatch sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    BOOL success = [self.myMatch sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    NSLog(@"Success? %d",success);
     if (error != nil)
     {
+        NSLog(@"ERROR %@",error);
         [self.delegate networkError:error.localizedDescription];
     }
 }
 
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID
 {
-    self.partnerWord = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *recievedWord = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([recievedWord isEqualToString:MAINTAIN_CONNECTION_MESSAGE]) return;
+    self.partnerWord = recievedWord;
     [self evaluateEndingConditions];
 }
 
@@ -120,11 +162,29 @@
 
 - (void) disconnectFromMatch
 {
-    [[[UIAlertView alloc] initWithTitle:@"DisconnectFromMatch" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
-    self.localPlayerIntentionallyDisconnected = YES;
-    [self.myMatch disconnect];
+//    [[[UIAlertView alloc] initWithTitle:@"DisconnectFromMatch" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+//    self.localPlayerIntentionallyDisconnected = YES;
+//    [self.myMatch disconnect];
 }
 
+- (void) match:(GKMatch *)match didFailWithError:(NSError *)error
+{
+        [[[UIAlertView alloc] initWithTitle:@"Did Fail With Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+}
+
+- (void) timerMethod
+{
+    @try {
+        static int x = 0;
+        NSLog(@"%d",x);
+        [self sendWord:@"Test"];
+        x++;
+    }
+    @catch (NSException *exception) {
+        [[[UIAlertView alloc] initWithTitle:@"Exception 2" message:[NSString stringWithFormat:@"%@",exception] delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+    }
+
+}
 - (id) init
 {
     if(self = [super init])

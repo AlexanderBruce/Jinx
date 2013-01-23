@@ -13,7 +13,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[[UIAlertView alloc] initWithTitle:@"DidFinishLaunching" message:[NSString stringWithFormat:@"|%@|",launchOptions] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
     // Override point for customization after application launch.
     return YES;
 }
@@ -44,10 +43,10 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     NSLog(@"Will enter foreground");
-    if(self.navigationController.viewControllers.count > 1)
-    {
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }
+//    if(self.navigationController.viewControllers.count > 1)
+//    {
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//    }
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
