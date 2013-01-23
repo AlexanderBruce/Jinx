@@ -6,7 +6,7 @@
 @property (nonatomic, strong) NSString *partnerWord;
 @property (nonatomic, strong) NSString *myWord;
 @property (nonatomic) int roundNumber;
-@property (nonatomic) BOOL localPlayerDisconnected;
+@property (nonatomic) BOOL localPlayerIntentionallyDisconnected;
 @end
 
 @implementation GameModel
@@ -51,9 +51,16 @@
 
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state
 {
+        [[[UIAlertView alloc] initWithTitle:@"DidChangeState" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
     if(state == GKPlayerStateDisconnected || state == GKPlayerStateUnknown)
     {
-        if(!self.localPlayerDisconnected)
+//        NSString *message = (state == GKPlayerStateDisconnected) ? @"Disconnected" : @"Unknown";
+
+        if([playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] && !self.localPlayerIntentionallyDisconnected)
+        {
+            [self.delegate networkError:@"You were disconnected"];
+        }
+        else if(!self.localPlayerIntentionallyDisconnected)
         {
             [self.delegate partnerDisconnected];
         }
@@ -92,7 +99,7 @@
             [self.usedWords addObject:self.partnerWord];
             [self.usedWords addObject:self.myWord];
             self.roundNumber ++;
-            [self.delegate gameProgressesWithFirstWord:self.myWord SecondWord:self.partnerWord];
+            [self.delegate gameProgressesWithMyWord:self.myWord PartnerWord:self.partnerWord];
             self.partnerWord = @"";
             self.myWord = @"";
             [self storeStats];
@@ -113,7 +120,8 @@
 
 - (void) disconnectFromMatch
 {
-    self.localPlayerDisconnected = YES;
+    [[[UIAlertView alloc] initWithTitle:@"DisconnectFromMatch" message:@"" delegate:nil cancelButtonTitle:@"Okay"otherButtonTitles:nil] show];
+    self.localPlayerIntentionallyDisconnected = YES;
     [self.myMatch disconnect];
 }
 
@@ -125,7 +133,7 @@
         self.partnerWord = @"";
         self.myWord = @"";
         self.roundNumber = 1;
-        self.localPlayerDisconnected = NO;
+        self.localPlayerIntentionallyDisconnected = NO;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.myGameModel = self;
     }

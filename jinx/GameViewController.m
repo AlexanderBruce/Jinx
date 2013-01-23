@@ -20,11 +20,15 @@
 #define WARNING_ALERT_TAG 6
 #define LABEL_TEXT @"Waiting for partner"
 
+#define MY_LAST_WORD_LABEL (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"My Last Word: %@" : @"Word 1: %@"
+#define PARTNER_LAST_WORD_LABEL (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ?@"Partner's Last Word: %@" : @"Word 2: %@"
+
 
 // <Intefaces>
 @interface GameViewController () <UITextFieldDelegate,GameModelDelegate,AVAudioPlayerDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
-@property (weak, nonatomic) IBOutlet UILabel *myLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myLastWordLabel;
+@property (weak, nonatomic) IBOutlet UILabel *partnersLastWordLabel;
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
 @property (strong,nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong,nonatomic) GameModel *myModel;
@@ -36,12 +40,14 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
     self.myModel.myMatch = self.myMatch;
     self.myModel.delegate = self;
-    self.myLabel.text=@"Last rounds words are here";
+    self.myLastWordLabel.text = [NSString stringWithFormat:MY_LAST_WORD_LABEL,@"None"];
+    self.partnersLastWordLabel.text = [NSString stringWithFormat:PARTNER_LAST_WORD_LABEL, @"N/A"];
     [self.myButton enableButton];
     self.myTextField.enabled =YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -87,9 +93,10 @@
 - (void)viewDidUnload
 {
     [self setMyTextField:nil];
-    [self setMyLabel:nil];
     [self setMyButton:nil];
     [self setMyRoundLabel:nil];
+    [self setMyLastWordLabel:nil];
+    [self setPartnersLastWordLabel:nil];
     [super viewDidUnload];
 }
 
@@ -121,6 +128,7 @@
     [alert show];
 }
 
+
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(alertView.tag == PARTNER_DISCONNECT_TAG)
@@ -129,7 +137,7 @@
     }
     else if(alertView.tag == NETWORK_ERROR_ALERT_TAG)
     {
-        
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else if(alertView.tag == VICTORY_ALERT_TAG)
     {
@@ -139,7 +147,8 @@
         }
         else
         {
-            self.myLabel.text=@"Last rounds words are here";
+            self.myLastWordLabel.text = [NSString stringWithFormat:MY_LAST_WORD_LABEL,@"N/A"];
+            self.partnersLastWordLabel.text = [NSString stringWithFormat:PARTNER_LAST_WORD_LABEL, @"N/A"];
             self.myTextField.text=nil;
             [self.myModel clearDictionary];
             [self.myButton enableButton];
@@ -164,14 +173,13 @@
     }
 
 }
--(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2
+-(void) gameProgressesWithMyWord:(NSString *)word1 PartnerWord:(NSString *)word2
 {
-    NSLog(@"Game progresses With word");
     [self.myButton enableButton];
     self.myTextField.enabled=YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    NSString * words = [NSString stringWithFormat:@"Last Round:\n%@ \n%@",word1,word2];
-    self.myLabel.text = words;
+    self.myLastWordLabel.text = [NSString stringWithFormat:MY_LAST_WORD_LABEL,word1];
+    self.partnersLastWordLabel.text = [NSString stringWithFormat:PARTNER_LAST_WORD_LABEL, word2];
     self.myTextField.text =nil;
     self.myRoundLabel.text = [NSString stringWithFormat:@"Round %d",[self.myModel getRoundNumber]];
 }

@@ -6,7 +6,7 @@
 @protocol GameModelDelegate <NSObject>
 
 -(void) gameWonWithWord:(NSString *) winningWord;
--(void) gameProgressesWithFirstWord:(NSString *)word1 SecondWord:(NSString *)word2;
+-(void) gameProgressesWithMyWord:(NSString *)word1 PartnerWord:(NSString *)word2;
 -(void) networkError: (NSString *) errorMessage;
 -(void) partnerDisconnected;
 
