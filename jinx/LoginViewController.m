@@ -84,7 +84,6 @@
     self.myMatchmakerVC = mmvc;
     mmvc.hosted = NO;
     mmvc.matchmakerDelegate = self;
-    NSLog(@"Present 1");
     [self presentViewController:mmvc animated:YES completion:nil];
 }
 
@@ -107,7 +106,6 @@
                     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                     mmvc.matchmakerDelegate = self;
                     self.myConnectingVC = mmvc;
-                    NSLog(@"Present 2");
                     [self presentViewController:mmvc animated:YES completion:nil];
                 }];
             }
@@ -115,7 +113,6 @@
             {
                 GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                 mmvc.matchmakerDelegate = self;
-                NSLog(@"Present 3");
                 [self presentViewController:mmvc animated:YES completion:nil];
             }
         }
@@ -142,7 +139,6 @@
 
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
 {
-    [[[UIAlertView alloc] initWithTitle:@"Cancelled" message:@"" delegate:nil cancelButtonTitle:@"" otherButtonTitles: nil] show];
     [self dismissViewControllerAnimated:YES completion:
      ^{
          self.myMatchmakerVC = nil;
@@ -154,7 +150,6 @@
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"" delegate:nil cancelButtonTitle:@"" otherButtonTitles: nil] show];
     [self dismissViewControllerAnimated:YES completion:^
      {
          self.myConnectingVC = nil;
@@ -163,7 +158,8 @@
      }];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setMyActivityIndicator:nil];
     [super viewDidUnload];
 }

@@ -16,7 +16,6 @@
 
 - (void) viewDidLoad
 {
-    //Free-HD-Purple-Space-Backgrounds.jpg
     UIImage *background = [UIImage imageNamed:@"Purple6.jpg"];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
 }

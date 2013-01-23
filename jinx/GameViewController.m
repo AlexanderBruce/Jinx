@@ -40,7 +40,6 @@
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
 	self.myTextField.delegate = self;
     self.myModel = [[GameModel alloc]init];
@@ -51,7 +50,6 @@
     [self.myButton enableButton];
     self.myTextField.enabled =YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
 }
 
 - (IBAction)homePressed:(UIBarButtonItem *)sender
@@ -59,13 +57,10 @@
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
     alert.tag = WARNING_ALERT_TAG;
     [alert show];
-    
 }
 
 - (IBAction)submitButtonPressed:(UIButton *)sender
-{
-    NSLog(@"submit pressed");
-    
+{    
     NSString * submitWord = self.myTextField.text;
     NSString * error =[self.myModel isValidSubmit:submitWord];
     if(error)
@@ -161,7 +156,6 @@
     {
         
     }
-    
     else if (alertView.tag == WARNING_ALERT_TAG)
     {
         if(buttonIndex==0)
