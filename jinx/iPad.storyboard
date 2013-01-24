@@ -15,17 +15,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="IOT-jR-ILR" kind="relationship" relationship="rootViewController" id="sUx-mb-TgX"/>
+                        <segue destination="Jgr-00-dUp" kind="relationship" relationship="rootViewController" id="335-r1-NPf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kX1-Mg-cc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2899" y="-2"/>
+            <point key="canvasLocation" x="-3881" y="6"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="twh-Vj-g7s">
             <objects>
-                <viewController id="IOT-jR-ILR" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewControllerID" id="IOT-jR-ILR" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0U-Tp-kfb">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,33 +75,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfr-TC-w4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1853" y="6"/>
+            <point key="canvasLocation" x="-1845" y="6"/>
         </scene>
-        <!--Login View Controller - Login-->
+        <!--Matchmaker View Controller-->
         <scene sceneID="ong-MC-SQF">
             <objects>
-                <viewController id="ob2-I7-0xN" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MatchmakerViewControllerID" id="ob2-I7-0xN" customClass="MatchmakerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wpX-TF-hqj">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="yP5-8y-zaL">
-                                <rect key="frame" x="366" y="390" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
                         <color key="backgroundColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="Zf2-Wu-1cz"/>
+                    <navigationItem key="navigationItem" id="Zf2-Wu-1cz"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
-                        <outlet property="myActivityIndicator" destination="yP5-8y-zaL" id="uq6-Qv-TpV"/>
                         <segue destination="BLd-FG-98D" kind="push" identifier="gameSegue" id="e1e-gG-XMu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2Y-R7-1Ni" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-768" y="-2"/>
+            <point key="canvasLocation" x="-792" y="14"/>
         </scene>
         <!--Game View Controller - Play-->
         <scene sceneID="qUw-gh-4NV">
@@ -191,6 +184,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Rb-F3-vXs" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-756" y="1383"/>
+        </scene>
+        <!--Login View Controller - Login-->
+        <scene sceneID="Cxu-rw-fEY">
+            <objects>
+                <viewController id="Jgr-00-dUp" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42K-Ul-jgO">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="8fL-ca-urJ">
+                                <rect key="frame" x="366" y="389" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="GpK-q6-w7c"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="myActivityIndicator" destination="8fL-ca-urJ" id="njy-Ra-moW"/>
+                        <segue destination="IOT-jR-ILR" kind="push" identifier="homeSegue" id="Hwk-6Z-O9u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zr8-0A-rgr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2796" y="6"/>
         </scene>
     </scenes>
     <resources>

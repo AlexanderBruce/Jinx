@@ -1,38 +1,98 @@
-//
-//  MatchMakerViewController.m
-//  jinx
-//
-//  Created by Andrew Patterson on 1/23/13.
-//  Copyright (c) 2013 Duke University. All rights reserved.
-//
+#import "MatchmakerViewController.h"
+#import <GameKit/GameKit.h>
+#import "AppDelegate.h"
+#import "GameViewController.h"
 
-#import "MatchMakerViewController.h"
-
-@interface MatchMakerViewController ()
-
+@interface MatchmakerViewController () <GKMatchmakerViewControllerDelegate, UIAlertViewDelegate>
+@property (nonatomic, strong) GKMatch *myMatch;
+@property (nonatomic, strong) GKMatchmakerViewController *myMatchmakerVC;
+@property (nonatomic) BOOL matchStarted;
 @end
 
-@implementation MatchMakerViewController
+@implementation MatchmakerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if([segue.destinationViewController isKindOfClass:[GameViewController class]])
+    {
+        GameViewController *dest = (GameViewController *) segue.destinationViewController;
+        dest.myMatch = self.myMatch;
     }
-    return self;
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.navigationItem.hidesBackButton = YES;
+    [self createMatch];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) refresh
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self dismissViewControllerAnimated:YES completion:
+     ^{
+         self.myMatchmakerVC = nil;
+         [self createMatch];
+     }];
 }
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) createMatch
+{
+    GKMatchmakerViewController *mmvc;
+    if(self.acceptedInvite)
+    {
+        mmvc = [[GKMatchmakerViewController alloc] initWithInvite:self.acceptedInvite];
+    }
+    else
+    {
+        GKMatchRequest *request = [[GKMatchRequest alloc] init];
+        request.minPlayers = 2;
+        request.maxPlayers = 2;
+        request.playersToInvite = self.playersToInvite;
+        mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+    }
+    self.myMatchmakerVC = mmvc;
+    mmvc.hosted = NO;
+    mmvc.matchmakerDelegate = self;
+    [self presentViewController:mmvc animated:YES completion:nil];
+}
+
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.myMatch = match;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentMatch = self.myMatch;
+    if (!self.matchStarted && match.expectedPlayerCount == 0)
+    {
+        self.matchStarted = YES;
+        [self performSegueWithIdentifier:@"gameSegue" sender:self];
+    }
+}
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:
+     ^{
+         self.myMatchmakerVC = nil;
+         [self.navigationController popViewControllerAnimated:YES];
+     }];
+    
+}
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:^
+     {
+         self.myMatchmakerVC = nil;
+         [self createMatch];
+     }];
+}
 @end

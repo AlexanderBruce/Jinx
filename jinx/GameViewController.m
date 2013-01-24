@@ -12,6 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MBProgressHUD.h"
 #import "Constants.h"
+#import "UINavigationController+Home.h"
+#import "UIAlertViewAutoDismiss.h"
 
 #define NETWORK_ERROR_ALERT_TAG 2
 #define VICTORY_ALERT_TAG 3
@@ -54,7 +56,7 @@
 
 - (IBAction)homePressed:(UIBarButtonItem *)sender
 {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Leave", nil];
+    UIAlertView *alert=[[UIAlertViewAutoDismiss alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Leave", nil];
     alert.tag = WARNING_ALERT_TAG;
     [alert show];
 }
@@ -65,7 +67,7 @@
     NSString * error =[self.myModel isValidSubmit:submitWord];
     if(error)
     {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        UIAlertView *alert=[[UIAlertViewAutoDismiss alloc] initWithTitle:@"Error" message:error delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
         alert.tag = INVALID_WORD_ALERT_TAG;
         [alert show];
     }
@@ -104,21 +106,21 @@
 -(void) gameWonWithWord:(NSString *) winningWord
 {
     [self initializeAudioPlayer];
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Victory!" message:@"Jinx! Y'all won!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Play Again", nil];
+    UIAlertView *alert=[[UIAlertViewAutoDismiss alloc] initWithTitle:@"Victory!" message:@"Jinx! Y'all won!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Play Again", nil];
     alert.tag = VICTORY_ALERT_TAG;
     [alert show];
 }
 
 - (void) networkError:(NSString *)errorMessage
 {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Network Error" message:errorMessage delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    UIAlertView *alert=[[UIAlertViewAutoDismiss alloc] initWithTitle:@"Network Error" message:errorMessage delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     alert.tag = NETWORK_ERROR_ALERT_TAG;
     [alert show];
 }
 
 - (void) partnerDisconnected
 {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Partner Disconnect" message:@"Your partner has left the game" delegate:self cancelButtonTitle:@"Go Home" otherButtonTitles: nil];
+    UIAlertView *alert=[[UIAlertViewAutoDismiss alloc] initWithTitle:@"Partner Disconnect" message:@"Your partner has left the game" delegate:self cancelButtonTitle:@"Go Home" otherButtonTitles: nil];
     alert.tag = PARTNER_DISCONNECT_TAG;
     [alert show];
 }
@@ -128,17 +130,17 @@
 {
     if(alertView.tag == PARTNER_DISCONNECT_TAG)
     {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToHomeViewControllerAnimated:YES];
     }
     else if(alertView.tag == NETWORK_ERROR_ALERT_TAG)
     {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToHomeViewControllerAnimated:YES];
     }
     else if(alertView.tag == VICTORY_ALERT_TAG)
     {
         if(buttonIndex ==0)
         {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToHomeViewControllerAnimated:YES];
         }
         else
         {
@@ -161,7 +163,7 @@
         if(buttonIndex==1)
         {
             [self.myModel disconnectFromMatch];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToHomeViewControllerAnimated:YES];
         }
     }
 }

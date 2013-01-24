@@ -14,17 +14,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ETb-cp-xwa" kind="relationship" relationship="rootViewController" id="u3t-nT-g9W"/>
+                        <segue destination="YXH-cH-mcq" kind="relationship" relationship="rootViewController" id="iQj-h6-mti"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PW5-ci-GFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-623" y="-58"/>
+            <point key="canvasLocation" x="-995" y="-58"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="png-Y2-qNR">
             <objects>
-                <viewController id="ETb-cp-xwa" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewControllerID" id="ETb-cp-xwa" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="INs-so-iQq">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,26 +73,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ph-dL-aqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181" y="-58"/>
+            <point key="canvasLocation" x="-195" y="-58"/>
         </scene>
-        <!--Login View Controller - Login-->
+        <!--Matchmaker View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MatchmakerViewControllerID" id="2" customClass="MatchmakerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="H42-Qo-Muw">
-                                <rect key="frame" x="142" y="164" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="W5c-TX-pQr"/>
+                    <navigationItem key="navigationItem" id="W5c-TX-pQr"/>
                     <connections>
-                        <outlet property="myActivityIndicator" destination="H42-Qo-Muw" id="jze-YO-h7D"/>
                         <segue destination="cl4-Mh-dzf" kind="push" identifier="gameSegue" id="wjw-nD-EpG"/>
                     </connections>
                 </viewController>
@@ -182,12 +175,69 @@
             </objects>
             <point key="canvasLocation" x="220" y="563"/>
         </scene>
+        <!--Login View Controller - Login-->
+        <scene sceneID="pca-PN-r5r">
+            <objects>
+                <viewController id="YXH-cH-mcq" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zZT-9t-wrm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="niW-jo-1Pu">
+                                <rect key="frame" x="142" y="164" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="3fM-dX-oin"/>
+                    <connections>
+                        <outlet property="myActivityIndicator" destination="niW-jo-1Pu" id="1PC-Rj-6hm"/>
+                        <segue destination="ETb-cp-xwa" kind="push" identifier="homeSegue" id="j7v-vX-AJq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B7u-ou-Swy" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-606" y="-58"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Play-button.png" width="302" height="102"/>
         <image name="Stats-button.png" width="302" height="102"/>
         <image name="Submit-button.png" width="302" height="102"/>
     </resources>
+    <classes>
+        <class className="GameViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homePressed:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="submitButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myLastWordLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myRoundLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="partnersLastWordLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="GenericViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericViewController.h"/>
+        </class>
+        <class className="HomeViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myActivityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="MatchmakerViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchmakerViewController.h"/>
+        </class>
+        <class className="StatsViewController" superclassName="GenericViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

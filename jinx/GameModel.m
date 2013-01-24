@@ -1,7 +1,7 @@
 #import "GameModel.h"
 #import "AppDelegate.h"
 
-#define MAINTAIN_CONNECTION_TIMER_FREQ 1
+#define MAINTAIN_CONNECTION_TIMER_FREQ 0.75
 #define MAINTAIN_CONNECTION_MESSAGE @"%###%"
 
 @interface GameModel() <GKMatchDelegate>

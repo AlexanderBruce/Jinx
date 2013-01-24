@@ -13,7 +13,9 @@
     [super viewDidLoad];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.navigationController = self.navigationController;
+    self.navigationItem.hidesBackButton = YES;
 }
+
 
 
 @end
