@@ -16,7 +16,7 @@
 #define TOTAL_ROUNDS @"total rounds"
 #define FASTEST_ROUND @"fast round"
 #define SLOWEST_ROUND @"slow round"
-#define MOST_POPULAR_WORD @"most popular word"
+#define MOST_POPULAR_DIC @"most popular dic"
 
 //longest word
 //shortest word

@@ -178,7 +178,18 @@
     [defaults setObject:fastRound forKey:FASTEST_ROUND];
     
     // most popular word
+    NSMutableDictionary *myDic = [NSMutableDictionary init];
+    myDic addEntriesFromDictionary:[defaults objectForKey:MOST_POPULAR_DIC];
     
+    for (NSString * cur in self.usedWords){
+        
+        NSNumber *old = [myDic objectForKey:cur];
+        NSNumber *new = [NSNumber numberWithInt:([old integerValue]+1)];
+        [myDic setObject:new forKey:cur];
+    }
+    
+    [defaults setObject:myDic forKey:MOST_POPULAR_DIC];
+
     [defaults synchronize];
     
     
