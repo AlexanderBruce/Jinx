@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4907B0DA16B0D78200B0981C /* MatchMakerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907B0D916B0D78200B0981C /* MatchMakerViewController.m */; };
 		49164FD816A87A720094BE03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49164FD716A87A720094BE03 /* UIKit.framework */; };
 		49164FDA16A87A720094BE03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49164FD916A87A720094BE03 /* Foundation.framework */; };
 		49164FDC16A87A720094BE03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49164FDB16A87A720094BE03 /* CoreGraphics.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4907B0D816B0D78200B0981C /* MatchMakerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchMakerViewController.h; sourceTree = "<group>"; };
+		4907B0D916B0D78200B0981C /* MatchMakerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchMakerViewController.m; sourceTree = "<group>"; };
 		49164FD316A87A720094BE03 /* jinx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jinx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49164FD716A87A720094BE03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49164FD916A87A720094BE03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,17 +151,19 @@
 				FA3B941D16AB2922007C572F /* GameViewController.m */,
 				4921E52C16AE2AEC00ECB11E /* GenericViewController.h */,
 				4921E52D16AE2AEC00ECB11E /* GenericViewController.m */,
+				4921E59016AF4A1800ECB11E /* HomeViewController.h */,
+				4921E59116AF4A1900ECB11E /* HomeViewController.m */,
 				4921E55A16AEFB4000ECB11E /* iPad.storyboard */,
 				49164FEF16A87A720094BE03 /* iPhone.storyboard */,
 				4921E55416AEFA1D00ECB11E /* Library */,
 				49164FFA16A87B0E0094BE03 /* LoginViewController.h */,
 				49164FFB16A87B0E0094BE03 /* LoginViewController.m */,
+				4907B0D816B0D78200B0981C /* MatchMakerViewController.h */,
+				4907B0D916B0D78200B0981C /* MatchMakerViewController.m */,
 				4921E55916AEFA7200ECB11E /* Media */,
 				4921E53716AE328E00ECB11E /* StatsViewController.h */,
 				4921E53816AE328E00ECB11E /* StatsViewController.m */,
 				49164FDE16A87A720094BE03 /* Supporting Files */,
-				4921E59016AF4A1800ECB11E /* HomeViewController.h */,
-				4921E59116AF4A1900ECB11E /* HomeViewController.m */,
 			);
 			path = jinx;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				4921E52E16AE2AEC00ECB11E /* GenericViewController.m in Sources */,
 				4921E53916AE328E00ECB11E /* StatsViewController.m in Sources */,
 				4921E59216AF4A1900ECB11E /* HomeViewController.m in Sources */,
+				4907B0DA16B0D78200B0981C /* MatchMakerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

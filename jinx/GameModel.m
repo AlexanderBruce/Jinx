@@ -2,7 +2,7 @@
 #import "AppDelegate.h"
 
 #define MAINTAIN_CONNECTION_TIMER_FREQ 1
-#define MAINTAIN_CONNECTION_MESSAGE @"@###@"
+#define MAINTAIN_CONNECTION_MESSAGE @"%###%"
 
 @interface GameModel() <GKMatchDelegate>
 @property (nonatomic, strong) NSMutableSet *usedWords;
@@ -55,11 +55,14 @@
 
 -(NSString *) isValidSubmit: (NSString *) word
 {
-    if([self.usedWords containsObject:word])
+    for (NSString *usedWord in self.usedWords)
     {
-        return [NSString stringWithFormat:@"Invalid Word: %@ has already been used",word];
+        if([word caseInsensitiveCompare:usedWord] == NSOrderedSame)
+        {
+            return [NSString stringWithFormat:@"Invalid Word: %@ has already been used",word];
+        }
     }
-    else if([[word stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+    if([[word stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
     {
         return [NSString stringWithFormat:@"Invalid Word: Your word cannot contain only spaces"];
     }

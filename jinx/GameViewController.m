@@ -54,7 +54,7 @@
 
 - (IBAction)homePressed:(UIBarButtonItem *)sender
 {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Leaving game. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Leave", nil];
     alert.tag = WARNING_ALERT_TAG;
     [alert show];
 }
@@ -138,7 +138,7 @@
     {
         if(buttonIndex ==0)
         {
-            
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else
         {
@@ -158,14 +158,12 @@
     }
     else if (alertView.tag == WARNING_ALERT_TAG)
     {
-        if(buttonIndex==0)
+        if(buttonIndex==1)
         {
-        [self.myModel disconnectFromMatch];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.myModel disconnectFromMatch];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
-        
     }
-
 }
 -(void) gameProgressesWithMyWord:(NSString *)word1 PartnerWord:(NSString *)word2
 {

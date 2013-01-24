@@ -9,6 +9,7 @@
 @property (nonatomic, strong) GKMatchmakerViewController *myConnectingVC;
 @property (nonatomic) BOOL matchStarted;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *myActivityIndicator;
+@property (nonatomic) BOOL viewControllerIsActive;
 @end
 
 @implementation LoginViewController
@@ -25,17 +26,21 @@
 
 - (void) viewDidLoad
 {
+    NSLog(@"View Did Load");
     [super viewDidLoad];
+    self.viewControllerIsActive = YES;
     [self authenticateLocalPlayer];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    self.viewControllerIsActive = YES;
     [self.myActivityIndicator startAnimating];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
 {
+    self.viewControllerIsActive = NO;
     [self.myActivityIndicator stopAnimating];
 }
 
@@ -51,13 +56,22 @@
 
 - (void) authenticateLocalPlayer
 {
+    NSLog(@"AUTHENT 1");
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     if(localPlayer.authenticated == NO)
     {
+        NSLog(@"AUTHENT 2");
         [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
-            if (localPlayer.isAuthenticated)
+            NSLog(@"AUTHENT 3");
+            if(!self.viewControllerIsActive)
+            {
+                //Do nothing other than autheticate local player
+                NSLog(@"DO NOTHING");
+            }
+            else if (localPlayer.isAuthenticated)
             {
                 [self installInvitationHandler];
+                NSLog(@"Create 6");
                 [self createMatch];
             }
             else
@@ -70,12 +84,14 @@
     else
     {
         [self installInvitationHandler];
+        NSLog(@"Create 7");
         [self createMatch];
     }
 }
 
 - (void) createMatchWithPlayersToInvite: (NSArray *) toInvite
 {
+    NSLog(@"Create 2");
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = 2;
     request.maxPlayers = 2;
@@ -84,11 +100,13 @@
     self.myMatchmakerVC = mmvc;
     mmvc.hosted = NO;
     mmvc.matchmakerDelegate = self;
+    NSLog(@"Present 3");
     [self presentViewController:mmvc animated:YES completion:nil];
 }
 
 - (void) createMatch
 {
+    NSLog(@"Create 1");
     [self createMatchWithPlayersToInvite:nil];
 }
 
@@ -106,6 +124,7 @@
                     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                     mmvc.matchmakerDelegate = self;
                     self.myConnectingVC = mmvc;
+                    NSLog(@"Present 1");
                     [self presentViewController:mmvc animated:YES completion:nil];
                 }];
             }
@@ -113,11 +132,13 @@
             {
                 GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:acceptedInvite];
                 mmvc.matchmakerDelegate = self;
+                NSLog(@"Present 2");
                 [self presentViewController:mmvc animated:YES completion:nil];
             }
         }
         else if (playersToInvite)
         {
+            NSLog(@"Create 3");
             [self createMatchWithPlayersToInvite:playersToInvite];
         }
     };
@@ -154,6 +175,7 @@
      {
          self.myConnectingVC = nil;
          self.myMatchmakerVC = nil;
+         NSLog(@"Create 5");
          [self createMatch];
      }];
 }
