@@ -1,5 +1,6 @@
 #import "GameModel.h"
 #import "AppDelegate.h"
+#import "Constants.h"
 
 #define MAINTAIN_CONNECTION_TIMER_FREQ 0.75
 #define MAINTAIN_CONNECTION_MESSAGE @"%###%"
@@ -137,6 +138,50 @@
 
 - (void) storeStats
 {
+
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"d" forKey:@"player highscore"];
+
+    NSString * longword=@"";
+    NSString * shortword= [self.usedWords anyObject];
+    
+    for (NSString * cur in self.usedWords) {
+        if(cur.length>longword.length)longword =cur;
+        if(cur.length<shortword.length)shortword=cur;
+    }
+    NSString * otherlong=[defaults objectForKey:LONGEST_WORD];
+    NSString * othershort=[defaults objectForKey:SHORTEST_WORD];
+    if(longword.length<otherlong.length) longword = otherlong;
+    [defaults setObject:longword forKey:LONGEST_WORD];
+    if(shortword.length>othershort.length && othershort.length!=0) shortword = othershort;
+    [defaults setObject:shortword forKey:SHORTEST_WORD];
+    
+    
+    NSNumber *previousTimesPlayed = [defaults objectForKey:TIMES_PLAYED];
+    NSNumber *timesPlayed = [NSNumber numberWithInt:([previousTimesPlayed integerValue] + 1)];
+    [defaults setObject:timesPlayed forKey:TIMES_PLAYED];
+    
+    NSNumber *previousTotalRounds = [defaults objectForKey:TOTAL_ROUNDS];
+    NSNumber *totalRounds = [NSNumber numberWithInt:([previousTotalRounds integerValue]+1)];
+    [defaults setObject:totalRounds forKey:TOTAL_ROUNDS];
+
+
+    NSNumber *fastRound = [defaults objectForKey:FASTEST_ROUND];
+    NSNumber *slowRound = [defaults objectForKey:SLOWEST_ROUND];
+    if (self.roundNumber>[slowRound integerValue]) {
+        slowRound = [NSNumber numberWithInt: self.roundNumber];
+    }
+    if(self.roundNumber<[fastRound integerValue] && [fastRound integerValue]!=0){
+        fastRound = [NSNumber numberWithInt:self.roundNumber];
+    }
+    [defaults setObject:slowRound forKey:SLOWEST_ROUND];
+    [defaults setObject:fastRound forKey:FASTEST_ROUND];
+    
+    // most popular word
+    
+    [defaults synchronize];
+    
+    
 }
 
 - (void) userInputedWord:(NSString *)word
