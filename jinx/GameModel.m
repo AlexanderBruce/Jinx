@@ -179,7 +179,7 @@
     
     // most popular word
     NSMutableDictionary *myDic = [NSMutableDictionary init];
-    myDic addEntriesFromDictionary:[defaults objectForKey:MOST_POPULAR_DIC];
+    [myDic addEntriesFromDictionary:[defaults objectForKey:MOST_POPULAR_DIC]];
     
     for (NSString * cur in self.usedWords){
         
