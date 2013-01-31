@@ -24,7 +24,7 @@
 }
 - (void) viewDidLoad
 {
-    
+    [super viewDidLoad];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.longLabel.text = [NSString stringWithFormat:@"Longest Word: %@ ",[defaults objectForKey:LONGEST_WORD] ];
     self.shortLabel.text = [NSString stringWithFormat:@"Shortest Word: %@ ",[defaults objectForKey:SHORTEST_WORD] ];
@@ -49,6 +49,8 @@
             mostCommon = cur;
         }
     }
+    
+    
     
     self.frequentWordLabel.text = [NSString stringWithFormat:@"Frequent Word: %@", mostCommon];
     
